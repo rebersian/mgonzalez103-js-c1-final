@@ -3,6 +3,7 @@ import type { ShoppingListDto } from '../models/shoppingList.dto';
 import type { ShoppingListItemDto } from '../models/shoppingListItem.dto';
 import type { ShoppingListDeleteDto } from '../models/shoppingList.delete.dto';
 import type { ShoppingListUpdateDto } from '../models/shoppingList.update.dto';
+import type { ShoppingListItemDeleteDto } from '../models/shoppingListItem.delete.dto';
 
 export async function getShoppingLists() {
   const response = await apiClient.get<ShoppingListDto[]>('/shopping-lists');
@@ -88,11 +89,11 @@ export async function addItemShoppingList(
 }
 
 export async function deleteItemShoppingList(shoppingListId: string, shoppingListItemId: string) {
-  const response = await apiClient.delete<ShoppingListDto>(
+  const response = await apiClient.delete<ShoppingListItemDeleteDto>(
     `/shopping-lists/${shoppingListId}/items/${shoppingListItemId}`
   );
 
-  if (response.status !== 200 && response.status !== 201) {
+  if (response.status !== 200 || !response.data.deleted) {
     throw new Error('Error al añadir la lista de la compra');
   }
 
