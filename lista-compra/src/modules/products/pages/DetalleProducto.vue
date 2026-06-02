@@ -35,8 +35,8 @@ const cargarDatos = async () => {
       unit: productRes.product.unit,
       description: productRes.product.description,
     });
-  } catch {
-    toast.error('Error al cargar los datos.', 3000);
+  } catch (err) {
+    toast.error(`Error al cargar los datos: ${(err as Error).message}`, 3000);
     goListaProductos();
   }
 };
@@ -75,8 +75,8 @@ const actualizarProducto = handleSubmit(async (values) => {
     toast.success('Producto actualizado correctamente.');
     // tras actualizar el producto recargamos la lista de productos
     goListaProductos();
-  } catch {
-    toast.error('No se ha podido actualizar el producto.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido actualizar el producto: ${(err as Error).message}`, 3000);
   }
 });
 
@@ -88,8 +88,8 @@ const eliminarProducto = async () => {
     toast.success('Producto eliminado correctamente.');
     // tras eliminar el producto recargamos la lista de productos
     goListaProductos();
-  } catch {
-    toast.error('No se ha podido eliminar el producto.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido eliminar el producto: ${(err as Error).message}`, 3000);
   }
 };
 

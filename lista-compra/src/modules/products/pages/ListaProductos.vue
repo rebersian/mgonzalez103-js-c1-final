@@ -47,8 +47,8 @@ const cargarDatos = async () => {
 
     products.value = productosRes.productsList;
     units.value = unitsRes.unitsList;
-  } catch {
-    toast.error('Error al cargar los datos de productos.', 3000);
+  } catch (err) {
+    toast.error(`Error al cargar los datos de productos: ${(err as Error).message}`, 3000);
     // si falla volvemos al inicio
     goHome();
   }
@@ -90,8 +90,8 @@ const anadirProducto = handleSubmit(async (values) => {
     resetForm();
 
     await cargarDatos();
-  } catch {
-    toast.error('Se ha producido un error al guardar el producto.', 3000);
+  } catch (err) {
+    toast.error(`Error al guardar los datos de productos: ${(err as Error).message}`, 3000);
   }
 });
 

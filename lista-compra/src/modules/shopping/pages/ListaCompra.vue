@@ -42,8 +42,8 @@ const cargarDatos = async () => {
   try {
     const res = await getShoppingLists();
     shoppingLists.value = res.shoppingLists;
-  } catch {
-    toast.error('Se ha producido un error al cargar las listas.', 3000);
+  } catch (err) {
+    toast.error(`Error al cargar las listas: ${(err as Error).message}`, 3000);
     // si falla volvemos al inicio
     goHome();
   }
@@ -88,8 +88,8 @@ const crearLista = handleSubmit(async (values) => {
     resetForm();
 
     await cargarDatos();
-  } catch {
-    toast.error('Se ha producido un error al crear la lista.', 3000);
+  } catch (err) {
+    toast.error(`Error al crear la lista: ${(err as Error).message}`, 3000);
   }
 });
 
@@ -101,8 +101,8 @@ const eliminarLista = async (shoppingListId: string) => {
     toast.success('Lista eliminada correctamente');
     // recarga de datos
     await cargarDatos();
-  } catch {
-    toast.error('Se ha producido un error al eliminar la lista.', 3000);
+  } catch (err) {
+    toast.error(`Error al eliminar la lista: ${(err as Error).message}`, 3000);
   }
 };
 

@@ -61,8 +61,8 @@ const cargarDatos = async () => {
       title: listaRes.shoppingList.title,
       date: listaRes.shoppingList.date,
     });
-  } catch {
-    toast.error('Error al cargar los datos.', 3000);
+  } catch (err) {
+    toast.error(`Error al cargar los datos: ${(err as Error).message}`, 3000);
     goListas();
   }
 };
@@ -104,8 +104,8 @@ const actualizarLista = handleSubmit(async (values) => {
     shopList.value.date = values.date;
 
     toast.success('Lista actualizada correctamente.');
-  } catch {
-    toast.error('No se ha podido actualizar la lista.', 3000);
+  } catch (err) {
+    toast.error(`Error al actualizar la lista: ${(err as Error).message}`, 3000);
   }
 });
 
@@ -165,8 +165,8 @@ const anadirItem = handleSubmitItem(async (values) => {
     resetItemForm();
     // recarga de datos
     await cargarDatos();
-  } catch {
-    toast.error('No se ha podido añadir el producto.', 3000);
+  } catch (err) {
+    toast.error(`Error al añadir el producto: ${(err as Error).message}`, 3000);
   }
 });
 
@@ -178,8 +178,8 @@ const eliminarItem = async (shoppingListItemId: string) => {
     toast.success('Producto eliminado correctamente.');
     // recarga de datos
     await cargarDatos();
-  } catch {
-    toast.error('No se ha podido eliminar el producto.', 3000);
+  } catch (err) {
+    toast.error(`Error al eliminar el producto: ${(err as Error).message}`, 3000);
   }
 };
 

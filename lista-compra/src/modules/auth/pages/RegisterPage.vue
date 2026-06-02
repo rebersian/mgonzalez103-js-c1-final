@@ -73,8 +73,8 @@ const onSubmit = handleSubmit(async (values) => {
     resetForm();
     toast.success('Registro realizado correctamente');
     router.push({ path: '/login', query: { registered: '1' } });
-  } catch {
-    toast.error('No se ha podido completar el registro.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido registrar el usuario: ${(err as Error).message}`, 3000);
   }
 });
 </script>

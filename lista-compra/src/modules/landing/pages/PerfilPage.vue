@@ -70,8 +70,8 @@ const loadUser = async () => {
       email: res.user.email ?? '',
       password: '',
     });
-  } catch {
-    toast.error('No se ha podido cargar los datos del usuario.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido cargar los datos del usuario: ${(err as Error).message}`, 3000);
   }
 };
 
@@ -89,8 +89,8 @@ const onSubmit = handleSubmit(async (values) => {
 
     toast.success('Perfil actualizado correctamente');
     await loadUser();
-  } catch {
-    toast.error('No se ha podido actualizar el perfil.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido actualizar el perfil: ${(err as Error).message}`, 3000);
   }
 });
 
@@ -105,8 +105,8 @@ const cargarEjemplo = async () => {
     await seedUser();
 
     toast.success('Perfil actualizado. Datos de simulacion cargados correctamente.');
-  } catch {
-    toast.error('No se ha podido cargar los datos simulados.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido cargar los datos simulados: ${(err as Error).message}`, 3000);
   }
 };
 
@@ -115,8 +115,8 @@ const eliminarEjemplo = async () => {
     await resetUser();
 
     toast.success('Perfil actualizado. Eliminados los datos correctamente.');
-  } catch {
-    toast.error('No se ha podido eliminar los datos del perfil.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido eliminar los datos del perfil: ${(err as Error).message}`, 3000);
   }
 };
 </script>

@@ -1,5 +1,7 @@
 import type { User } from '../models/user.model';
+import { useToast } from '@/common/composables/useToast';
 
+const toast = useToast();
 const TOKEN_KEY = 'token';
 const USER_KEY = 'user';
 
@@ -35,7 +37,8 @@ export function getUser(): User | null {
 
   try {
     return JSON.parse(raw) as User;
-  } catch {
+  } catch (err) {
+    toast.error(`Error al cargar el usuario: ${(err as Error).message}`, 3000);
     return null;
   }
 }

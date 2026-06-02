@@ -56,8 +56,8 @@ const onSubmit = handleSubmit(async (values) => {
     toast.success('Sesión iniciada correctamente.');
     resetForm();
     router.push('/');
-  } catch {
-    toast.error('No se ha podido iniciar sesión.', 3000);
+  } catch (err) {
+    toast.error(`No se ha podido iniciar sesión: ${(err as Error).message}`, 3000);
   }
 });
 </script>

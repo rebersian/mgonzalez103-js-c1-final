@@ -7,8 +7,9 @@
         <div class="col-lg-8">
           <h1 class="display-6 fw-bold mb-2">Sobre la app</h1>
           <p class="lead text-secondary">
-            TodoApp nace con una idea simple: ayudarte a organizar tus compras. Sin distracciones,
-            con una interfaz clara y enfocada en lo esencial: tus listas de la compra.
+            Lista de la compra nace con una idea simple: ayudarte a organizar tus compras. Sin
+            distracciones, con una interfaz clara y enfocada en lo esencial: tus listas de la
+            compra.
           </p>
         </div>
       </div>
@@ -25,7 +26,9 @@
               <ul class="mb-0 text-secondary">
                 <li class="mb-2">Sencillez por defecto, sin funcionalidades innecesarias.</li>
                 <li class="mb-2">Interfaz accesible y usable en cualquier dispositivo.</li>
-                <li class="mb-2">Centrada en lo que importa: crear, marcar y eliminar listas.</li>
+                <li class="mb-2">
+                  Centrada en lo que importa: crear, gestionar y eliminar listas.
+                </li>
               </ul>
             </div>
           </div>
@@ -35,9 +38,9 @@
             <div class="card-body">
               <h2 class="h5">Tecnología</h2>
               <p class="text-secondary mb-0">
-                TodoApp está construida con Vue 3 y Vue Router. Su interfaz aprovecha Bootstrap para
-                mantener un diseño limpio y responsive. Pensada para integrarse fácilmente con un
-                backend mediante APIs.
+                Lista de la compra está construida con Vue 3 y Vue Router. Su interfaz aprovecha
+                Bootstrap para mantener un diseño limpio y responsive. Pensada para integrarse
+                fácilmente con un backend mediante APIs.
               </p>
             </div>
           </div>
