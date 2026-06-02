@@ -14,6 +14,7 @@ import {
 } from '@/modules/auth/services/auth.service';
 import { clearAuth } from '@/modules/auth/utils/token';
 
+const showDeleteModal = ref(false);
 const router = useRouter();
 const toast = useToast();
 
@@ -110,11 +111,16 @@ const cargarEjemplo = async () => {
   }
 };
 
+const abrirConfirmacionEliminar = () => {
+  showDeleteModal.value = true;
+};
+
 const eliminarEjemplo = async () => {
   try {
     await resetUser();
 
     toast.success('Perfil actualizado. Eliminados los datos correctamente.');
+    showDeleteModal.value = false;
   } catch (err) {
     toast.error(`No se ha podido eliminar los datos del perfil: ${(err as Error).message}`, 3000);
   }
@@ -210,7 +216,7 @@ const eliminarEjemplo = async () => {
 
                 <div class="col-12 col-md-4">
                   <button
-                    class="btn btn-outline-secondary w-100"
+                    class="btn btn-outline-success w-100"
                     type="button"
                     @click="cargarEjemplo"
                   >
@@ -222,7 +228,7 @@ const eliminarEjemplo = async () => {
                   <button
                     class="btn btn-outline-warning w-100"
                     type="button"
-                    @click="eliminarEjemplo"
+                    @click="abrirConfirmacionEliminar"
                   >
                     Eliminar datos de ejemplo
                   </button>
@@ -236,6 +242,41 @@ const eliminarEjemplo = async () => {
               Cerrar sesión
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    v-if="showDeleteModal"
+    class="modal fade show d-block"
+    tabindex="-1"
+    style="background-color: rgba(0, 0, 0, 0.5)"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+            Confirmar eliminación
+          </h5>
+
+          <button type="button" class="btn-close" @click="showDeleteModal = false"></button>
+        </div>
+
+        <div class="modal-body">
+          <p class="mb-2">Vas a eliminar todos los datos de ejemplo cargados en tu perfil.</p>
+
+          <p class="text-danger fw-semibold mb-0">Esta acción no se puede deshacer.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" @click="showDeleteModal = false">
+            Cancelar
+          </button>
+
+          <button type="button" class="btn btn-danger" @click="eliminarEjemplo">
+            Sí, eliminar datos
+          </button>
         </div>
       </div>
     </div>
